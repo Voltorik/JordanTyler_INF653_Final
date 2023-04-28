@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 3000
 // Mongo DB connection
 connectDB() 
 
+app.use('/', require('./routes/root'));
+
 // Route does not exist catch all
 app.all('*', (req, res) => {
     res.status(404);
