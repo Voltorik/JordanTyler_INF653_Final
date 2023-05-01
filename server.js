@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3000
 // Mongo DB connection
 connectDB();
 
+// Cross Origin Resource Sharing
 app.use(cors(corsOptions));
 
 // Built-in middleware for json 
