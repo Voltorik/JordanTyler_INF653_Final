@@ -16,8 +16,6 @@ connectDB();
 // Built-in middleware for json 
 app.use(express.json());
 
-//app.use(verifyStates)
-
 // Route to public html page
 app.use('/', require('./routes/root'));
 
