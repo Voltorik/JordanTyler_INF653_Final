@@ -15,7 +15,7 @@ const getAllStates = async (req, res) => {
             state.funfacts = stateDB.funfacts;
         }
     }
-    res.json(states);
+    res.status(200).json(states);
 }
 
 const getState = async (req, res) => {
@@ -23,7 +23,7 @@ const getState = async (req, res) => {
     if (stateDB) {
         req.state.funfacts = stateDB.funfacts;
     }
-    res.json(req.state);
+    res.status(200).json(req.state);
 }
 
 const getFunFact = async (req, res) => {
