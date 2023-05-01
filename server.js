@@ -4,14 +4,14 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-const connectDB = require('./config/dbConn')
+const connectDB = require('./config/dbConn');
 const mongoose = require('mongoose');
 
 const verifyStates = require('./middleware/verifyStates');
 const PORT = process.env.PORT || 3000
 
 // Mongo DB connection
-connectDB() 
+connectDB();
 
 // Built-in middleware for json 
 app.use(express.json());
@@ -37,4 +37,4 @@ app.all('*', (req, res) => {
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-})
+});
