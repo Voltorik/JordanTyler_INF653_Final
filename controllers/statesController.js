@@ -3,11 +3,11 @@ const States = require('../models/States');
 const getAllStates = async (req, res) => {
     let states = req.states;
 
-    if (req.query.contig === 'true') {
-        states = states.filter(state => state.code !== 'AK' && state.code !== 'HI');
-    } else if (req.query.contig === 'false') {
-        states = states.filter(state => state.code === 'AK' || state.code === 'HI');
-    }
+    // if (req.query.contig === 'true') {
+    //     states = states.filter(state => state.code !== 'AK' && state.code !== 'HI');
+    // } else if (req.query.contig === 'false') {
+    //     states = states.filter(state => state.code === 'AK' || state.code === 'HI');
+    // }
 
     for (let state of states) {
         const stateDB = await States.findOne({stateCode: state.code});
