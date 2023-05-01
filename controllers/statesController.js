@@ -9,7 +9,7 @@ const getAllStates = async (req, res) => {
         states = states.filter(state => state.code === 'AK' || state.code === 'HI');
     }
 
-    for (state of states) {
+    for (let state of states) {
         const stateDB = await States.findOne({stateCode: state.code});
         if (stateDB) {
             state.funfacts = stateDB.funfacts;
