@@ -2,19 +2,22 @@ const States = require('../models/States');
 
 const getAllStates = async (req, res) => {
     let states = req.states;
+    const result = [];
 
-    // if (req.query.contig === 'true') {
-    //     states = states.filter(state => state.code !== 'AK' && state.code !== 'HI');
-    // } else if (req.query.contig === 'false') {
-    //     states = states.filter(state => state.code === 'AK' || state.code === 'HI');
-    // }
-
-    for (let state of states) {
-        const stateDB = await States.findOne({stateCode: state.code});
-        if (stateDB) {
-            state.funfacts = stateDB.funfacts;
-        }
+    if (req.query.contig === 'true') {
+        states = states.filter(state => state.code !== 'AK' && state.code !== 'HI');
+    } else if (req.query.contig === 'false') {
+        states = states.filter(state => state.code === 'AK' || state.code === 'HI');
     }
+
+    const statesDB = await States.find();
+    for (let i = 0; i < states.length; i++) {
+      let find = statesDB.find(state => state.stateCode === states[i].code);
+      if (find) {
+        states[i].funfacts = find['funfacts'];
+      }
+    }
+    
     res.status(200).json(states);
 }
 
